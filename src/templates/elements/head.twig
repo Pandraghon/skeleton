@@ -1,0 +1,31 @@
+<head>
+    <meta charset="{{ Configure('read', 'App.encoding') }}">
+    <title>{{ Configure('read', 'App.name') }}</title>
+    <meta name="author" content="{{ Configure('read', 'meta.author') }}" />
+    <meta name="description" content="{{ Configure('read', 'meta.description') }}" />
+    <meta name="keywords" content="{{ Configure('read', 'meta.keywords')|join(', ') }}" />
+
+    <!-- Twitter Card Data -->
+    {% for name,meta in Configure('read', 'meta.twitter') %}
+        <meta name="twitter:{{ name }}" content="{{ meta }}" />
+    {% endfor %}
+
+    <!-- Open Graph Data -->
+    {% for name,meta in Configure('read', 'meta.og') %}
+        <meta property="og:{{ name }}" content="{{ meta }}" />
+    {% endfor %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    {{ css('style.css', 'screen, projection') }}
+    {{ css(Configure('read', 'template') ~ '.css') }}
+    {{ css('print.css', 'print') }}
+    {{ css('font-awesome/font-awesome.css') }}
+    {% for css in css_include %}
+        {{ css(css) }}
+    {% endfor %}
+    <!--[if IE]>
+    {{ css('ie.css', 'screen, projection') }}
+    <![endif]-->
+    <link href="/img/icon.ico" rel="icon" type="image/x-icon" />
+</head>
